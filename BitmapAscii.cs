@@ -5,6 +5,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System;
+using System.Text;
 
 class BitmapAscii
 {
@@ -22,7 +23,7 @@ class BitmapAscii
         BitmapAscii bitmapAscii = new BitmapAscii();
 
         // Create string to store ascii text
-        string asciiText = "";
+        StringBuilder asciiText = new StringBuilder();
 
         // Loop through image
         for (int i = 0; i < bmpImage.Height; i += kernelHeight)
@@ -72,18 +73,18 @@ class BitmapAscii
                 string asciiChar = bitmapAscii.GrayToString(avgColorNum, numberOfChars);
 
                 // Add the ascii character to the ascii string
-                asciiText += asciiChar;
+                asciiText.Append(asciiChar);
             }// End for
 
             // Start a new line in the ascii string
-            asciiText += "\n";
+            asciiText.Append("\n");
         }// End for
 
         // Store the asciiText in the private field
-        _asciiText = asciiText;
+        _asciiText = asciiText.ToString();
 
         // Return the complete ascii string
-        return asciiText;
+        return _asciiText;
     }// End Asciitize
 
     public override string ToString()
